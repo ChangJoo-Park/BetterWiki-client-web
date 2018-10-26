@@ -1,5 +1,7 @@
-import { Base } from './Base'
+import BaseModel from './Base'
 
-export class Service extends Base {
+export default class Topic extends BaseModel {
 
 }
+
+Topic.resourceURL = '/topics'
