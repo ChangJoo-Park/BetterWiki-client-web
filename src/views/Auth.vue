@@ -1,6 +1,18 @@
 <template>
-  <div class="container">
+  <div
+    v-if="checkSetup"
+    class="container">
+    <div v-if="needSetup">
+      <h1 class="title">Hello BetterWiki!</h1>
+      <p>
+        Before use, you need to setup for administrator and basic service infomation
+      </p>
+      <b-button @click="goToSetup">
+        Bring me to setup page!
+      </b-button>
+    </div>
     <b-form
+      v-else
       @submit="onSubmit">
       <b-form-group
         id="emailInputGroup"
@@ -42,6 +54,7 @@
 
 <script>
 import Auth from '@/models/Auth'
+import Service from '@/models/Service'
 
 export default {
   data () {
@@ -49,14 +62,26 @@ export default {
       form: {
         email: '',
         password: ''
-      }
+      },
+      checkSetup: false,
+      needSetup: false
     }
+  },
+  created () {
+    Service.isSetup()
+      .then(({ needSetup }) => {
+        this.checkSetup = true
+        this.needSetup = needSetup
+      })
   },
   methods: {
     async onSubmit (evt) {
       evt.preventDefault()
       await Auth.login(this.form)
       this.$router.push({ name: 'home' })
+    },
+    goToSetup () {
+      this.$router.push({ name: 'setup' })
     }
   }
 }

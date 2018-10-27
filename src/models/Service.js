@@ -1,7 +1,12 @@
 import BaseModel from './Base'
 
-export class Service extends BaseModel {
-
+export default class Service extends BaseModel {
+  static isSetup () {
+    return this.httpClient({
+      url: `${this.baseURL}/setup/check`,
+      method: 'GET'
+    }).then(response => response.data)
+  }
 }
 
 Service.resourceURL = '/services'
