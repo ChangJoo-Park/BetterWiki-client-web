@@ -22,8 +22,12 @@ export default class BaseModel {
     return `${this.baseURL}${this.resourceURL}`
   }
 
-  static find () {
-    return this.httpClient.get(this.url).then(res => res.data)
+  static find (params = {}) {
+    return this.httpClient({
+      method: 'GET',
+      url: this.url,
+      params
+    }).then(res => res.data)
   }
 
   /**
