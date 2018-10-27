@@ -21,10 +21,8 @@ export default {
     async checkAuthenticated () {
       try {
         const promiseBasicInfomations = [Auth.getMe(), Service.find()]
-        const result = await Promise.all(promiseBasicInfomations)
-        const { user } = result[0]
-        const service = result[1]
-        this.setUser(user)
+        const [me, service] = await Promise.all(promiseBasicInfomations)
+        this.setUser(me.user)
         this.setService(service)
       } catch (error) {
         this.$router.replace('login')
