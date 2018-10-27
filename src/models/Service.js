@@ -15,7 +15,7 @@ export default class Service extends BaseModel {
       data: {
         admin, service
       }
-    })
+    }).then(response => response.data)
   }
 }
 
