@@ -19,4 +19,4 @@ export default class Service extends BaseModel {
   }
 }
 
-Service.resourceURL = '/services'
+Service.resourceURL = '/service'
