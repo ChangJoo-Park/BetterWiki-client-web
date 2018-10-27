@@ -5,7 +5,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import Auth from '@/models/Auth'
+import Service from '@/models/Service'
 
 export default {
   mounted () {
@@ -14,15 +17,18 @@ export default {
     }
   },
   methods: {
-    checkAuthenticated () {
-      return Auth.getMe()
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.error(error)
-          this.$router.replace('login')
-        })
+    ...mapActions(['setUser', 'setService']),
+    async checkAuthenticated () {
+      try {
+        const promiseBasicInfomations = [Auth.getMe(), Service.find()]
+        const result = await Promise.all(promiseBasicInfomations)
+        const { user } = result[0]
+        const service = result[1]
+        this.setUser(user)
+        this.setService(service)
+      } catch (error) {
+        this.$router.replace('login')
+      }
     }
   }
 }
