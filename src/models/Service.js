@@ -7,6 +7,16 @@ export default class Service extends BaseModel {
       method: 'GET'
     }).then(response => response.data)
   }
+
+  static setup ({ admin, service } = {}) {
+    return this.httpClient({
+      url: `${this.baseURL}/setup`,
+      method: 'POST',
+      data: {
+        admin, service
+      }
+    })
+  }
 }
 
 Service.resourceURL = '/services'
