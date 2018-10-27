@@ -121,7 +121,7 @@ export default {
       const { admin, service } = this.form
       Service.setup({ admin, service })
         .then(response => {
-          this.$router.push({ name: 'home' })
+          this.$router.push({ name: 'login' })
         })
         .catch(error => {
           window.alert('Error')
