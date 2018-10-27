@@ -56,6 +56,8 @@
 import Auth from '@/models/Auth'
 import Service from '@/models/Service'
 
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -75,9 +77,12 @@ export default {
       })
   },
   methods: {
+    ...mapActions(['setUser', 'setService']),
     async onSubmit (evt) {
       evt.preventDefault()
-      await Auth.login(this.form)
+      const { user, service } = await Auth.login(this.form)
+      this.setUser(user)
+      this.setService(service)
       this.$router.push({ name: 'home' })
     },
     goToSetup () {
