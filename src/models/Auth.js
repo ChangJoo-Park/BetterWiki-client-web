@@ -30,7 +30,6 @@ export default class Auth {
           Authorization
         }
       })
-      console.log('data => ', data)
       return Promise.resolve(data)
     } catch (error) {
       return Promise.reject(error)
