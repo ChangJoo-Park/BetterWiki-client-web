@@ -8,14 +8,16 @@
 import Auth from '@/models/Auth'
 
 export default {
-  created () {
-    this.checkAuthenticated()
+  mounted () {
+    if (this.$route.meta.needAuth) {
+      this.checkAuthenticated()
+    }
   },
   methods: {
     checkAuthenticated () {
       return Auth.getMe()
         .then(response => {
-          console.error(response)
+          console.log(response)
         })
         .catch(error => {
           console.error(error)

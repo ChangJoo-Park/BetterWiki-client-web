@@ -11,6 +11,9 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      meta: {
+        needAuth: true
+      },
       component: Home
     },
     {
@@ -24,7 +27,18 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
+      meta: {
+        needAuth: false
+      },
       component: () => import(/* webpackChunkName: "login" */ './views/Auth.vue')
+    },
+    {
+      path: '/setup',
+      name: 'setup',
+      meta: {
+        needAuth: false
+      },
+      component: () => import(/* webpackChunkName: 'setup' */ './views/Setup.vue')
     }
   ]
 })
