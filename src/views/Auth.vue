@@ -7,12 +7,14 @@
         label="Email address:"
         label-for="emailInput"
         description="We'll never share your email with anyone else.">
+
         <b-form-input
           id="emailInput"
           v-model="form.email"
           type="email"
           required
           placeholder="Enter email"/>
+
       </b-form-group>
 
       <b-form-group
@@ -20,13 +22,16 @@
         label="Email address:"
         label-for="passwordInput"
         description="">
+
         <b-form-input
           id="passwordInput"
           v-model="form.password"
           type="password"
           required
           placeholder="Enter password"/>
+
       </b-form-group>
+
       <b-button
         type="submit"
         variant="primary">Login</b-button>
@@ -56,5 +61,3 @@ export default {
   }
 }
 </script>
-
-<!-- b-form-1.vue -->
