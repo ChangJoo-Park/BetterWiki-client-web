@@ -28,39 +28,21 @@
     <b-row>
       <b-col cols="3">
         <b-list-group>
-          <b-list-group-item href="#">Cras justo odio</b-list-group-item>
-          <b-list-group-item href="#">Dapibus ac facilisis in</b-list-group-item>
-          <b-list-group-item href="#">Vestibulum at eros</b-list-group-item>
+          <b-list-group-item
+            v-for="topic in topics"
+            :key="topic.id">
+            {{ topic.name }}
+            <p>{{ topic.dscription }}</p>
+          </b-list-group-item>
         </b-list-group>
       </b-col>
       <b-col class="article-listing">
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
-        </div>
-        <div class="article-item">
-          <h1>Hello World</h1>
-          <p>Lorem Ipsum</p>
+        <div
+          v-for="article in articles"
+          :key="article.id"
+          class="article-item">
+          <h4>{{ article.title }} <small> by {{ article.user.username }}</small></h4>
+          <p>Last updated on {{ article.updatedAt }}</p>
         </div>
       </b-col>
     </b-row>
@@ -69,14 +51,26 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Topic from '@/models/Topic'
+import Article from '@/models/Article'
 
 export default {
   name: 'Home',
+  data () {
+    return {
+      topics: [],
+      articles: []
+    }
+  },
   computed: {
     ...mapGetters(['user', 'service']),
     isLoaded () {
       return this.user && this.service
     }
+  },
+  async mounted () {
+    this.topics = await Topic.find()
+    this.articles = await Article.find({ topic: this.topics[0].id })
   }
 }
 </script>
