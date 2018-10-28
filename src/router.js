@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Articles from './views/Articles.vue'
+import Article from './views/Article.vue'
 
 Vue.use(Router)
 
@@ -10,11 +12,28 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
       meta: {
         needAuth: true
       },
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          meta: {
+            needAuth: true
+          },
+          component: Articles
+        },
+        {
+          path: '/articles/:articleId',
+          name: 'article',
+          meta: {
+            needAuth: true
+          },
+          component: Article
+        }
+      ]
     },
     {
       path: '/about',
