@@ -1,5 +1,10 @@
 # betterwiki-vue
 
+<!-- TODO: New Article form -->
+<!-- TODO: Edit Article form -->
+<!-- TODO: Archive listing from article -->
+<!-- TODO: Account routes -->
+<!-- TODO: Admin routes -->
 ## Project setup
 ```
 npm install
