@@ -13,7 +13,7 @@
           id="nav_dropdown_collapse"
           is-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="#">New Article</b-nav-item>
+            <b-nav-item :to="{ name: 'article-new' }">New Article</b-nav-item>
             <b-nav-item-dropdown
               :text="user.username"
               right>

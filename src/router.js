@@ -26,6 +26,14 @@ export default new Router({
           component: Articles
         },
         {
+          path: '/articles/new',
+          name: 'article-new',
+          meta: {
+            needAuth: true
+          },
+          component: () => import(/* webpackChunkName: "new-article" */ './views/ArticleNew.vue')
+        },
+        {
           path: '/articles/:articleId',
           name: 'article',
           meta: {
