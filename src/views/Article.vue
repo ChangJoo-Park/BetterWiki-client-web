@@ -3,10 +3,7 @@
     <b-row>
       <b-col cols="9">
         <h1>{{ article.title }}</h1>
-
-        <div>
-          {{ article.body }}
-        </div>
+        <viewer v-model="article.body" />
       </b-col>
       <b-col>
         <h5>Topic on</h5>
@@ -38,8 +35,15 @@
 
 <script>
 import Article from '@/models/Article'
+import 'tui-editor/dist/tui-editor.css'
+import 'tui-editor/dist/tui-editor-contents.css'
+import 'codemirror/lib/codemirror.css'
+import { Viewer } from '@toast-ui/vue-editor'
 
 export default {
+  components: {
+    Viewer
+  },
   data () {
     return {
       isLoaded: false,
@@ -47,7 +51,7 @@ export default {
     }
   },
   async created () {
-    this.article = await Article.findOne(this.$route.params.articleId)
+    this.article = await Article.findOne( this.$route.params.articleId )
     this.isLoaded = true
   }
 }
