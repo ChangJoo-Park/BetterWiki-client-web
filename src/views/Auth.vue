@@ -31,7 +31,7 @@
 
       <b-form-group
         id="passwordInputGroup"
-        label="Email address:"
+        label="Password:"
         label-for="passwordInput"
         description="">
 
