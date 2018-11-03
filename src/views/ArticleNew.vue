@@ -9,17 +9,10 @@
         placeholder="Awesome infomation"
       >
     </div>
-    <editor 
-      v-model="body" 
+    <editor
+      v-model="body"
       height="500px"/>
     <br>
-    <div class="form-group">
-      <input
-        v-model="whatChanged"
-        type="text"
-        placeholder="Tell me what changed."
-        class="form-control">
-    </div>
     <input
       type="button"
       class="btn btn-primary"
