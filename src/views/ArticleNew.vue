@@ -7,6 +7,7 @@
         type="text"
         class="form-control"
         placeholder="Awesome infomation"
+        autofocus
         @keydown.tab.prevent.stop="focusEditor"
       >
     </div>

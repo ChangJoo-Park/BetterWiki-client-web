@@ -44,14 +44,14 @@ export default {
   components: {
     Viewer
   },
-  data () {
+  data() {
     return {
       isLoaded: false,
       article: null
     }
   },
-  async created () {
-    this.article = await Article.findOne( this.$route.params.articleId )
+  async mounted() {
+    this.article = await Article.findOne(this.$route.params.articleId)
     this.isLoaded = true
   }
 }
