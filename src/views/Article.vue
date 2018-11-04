@@ -24,7 +24,10 @@
         </p>
         <b-button
           block
-          size="lg">Edit</b-button>
+          size="lg"
+          @click="$router.push({ name: 'article-edit', params: { articleId: article.id } })">
+          Edit
+        </b-button>
         <b-button
           block
           size="lg">History</b-button>
