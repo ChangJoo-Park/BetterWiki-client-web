@@ -38,8 +38,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   computed: {
-    ...mapGetters(['user', 'service']),
-    isLoaded () {
+    ...mapGetters([ 'user', 'service' ]),
+    isLoaded() {
       return this.user && this.service
     }
   }
@@ -49,5 +49,6 @@ export default {
 <style lang="scss">
 .home .list-group-item {
   border: none;
+  padding: 0.25rem;
 }
 </style>
