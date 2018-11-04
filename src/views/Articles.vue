@@ -4,7 +4,10 @@
       <b-list-group>
         <b-list-group-item
           v-for="topic in topics"
-          :key="topic.id">
+          :key="topic.id"
+          :class="{ active: topic.id === currentTopic }"
+          @click="loadTopic(topic.id)"
+        >
           {{ topic.name }}
           <p>{{ topic.dscription }}</p>
         </b-list-group-item>
@@ -33,15 +36,25 @@ import Topic from '@/models/Topic'
 import Article from '@/models/Article'
 
 export default {
-  data () {
+  data() {
     return {
       topics: [],
+      currentTopic: null,
       articles: []
     }
   },
-  async mounted () {
+  async mounted() {
     this.topics = await Topic.find()
-    this.articles = await Article.find({ topic: this.topics[0].id })
+    // FIXME: Need handling when topics are empty
+    this.currentTopic = this.$route.query.topic || this.topics[ 0 ].id
+    this.loadTopic(this.currentTopic)
+  },
+  methods: {
+    async loadTopic(id) {
+      this.articles = await Article.find({ topic: id })
+      this.currentTopic = id
+      this.$router.push({ name: 'home', query: { topic: id } })
+    }
   }
 }
 </script>
